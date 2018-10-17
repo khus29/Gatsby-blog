@@ -9,7 +9,9 @@ const Blog = () => (
           title
           date
           content {
-            content
+            childMarkdownRemark {
+              html
+            }
           }
           image {
             file {
@@ -23,7 +25,9 @@ const Blog = () => (
       contentfulBlog: {
         title,
         date,
-        content: { content },
+        content: { 
+          childMarkdownRemark : { html }
+         },
         image: {
           file: { url }
         }
@@ -33,7 +37,7 @@ const Blog = () => (
         <h1>{title}</h1>
         <small>Created on {date}</small>
         <img src={url} alt="image" />
-        <p>{content}</p>
+        <div dangerouslySetInnerHTML={{__html: html}} />
       </>
     )}
   />
